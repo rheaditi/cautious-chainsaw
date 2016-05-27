@@ -1,0 +1,22 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+
+body {
+  margin: 2em;
+  font-family: 'Raleway', Helvetica, sans-serif;
+  font-weight: 400;
+  background-color: #00CDCF;
+  color: #FFFFFF;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+h1 {
+  opacity: 0.8;
+  font-weight: 700;
+  font-size: 200%;
+}
+
+ /*
+  * See https://github.com/angular/angular.io/blob/master/public/docs/_examples/styles.css
+  * for the full set of master styles used by the documentation samples
+  */
