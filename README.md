@@ -10,4 +10,7 @@ Requires `node` and `npm`. Install those and run:
 npm install
 npm start
 ```
-# Now Completed till Chapter 5 - Services - 27th May 2016
+# Status 
+
+* Now Completed till Chapter 5 - Services - 27th May 2016
+![Screenshot!](./images/2016-05-27-9.13.17PM-IST.png)
