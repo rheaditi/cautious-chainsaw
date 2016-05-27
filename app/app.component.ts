@@ -1,43 +1,49 @@
 import { Component } from '@angular/core';
-
-export class Villain {
-  id: number;
-  name: string;
-}
-
+import { OnInit } from '@angular/core';
+import { VillainDetailComponent } from './villain-detail.component';
+import { VillainService } from './villain.service';
+import { Villain } from './villain';
 
 @Component({
   selector: 'my-app',
   template: `
-  <h1>{{title}}</h1>
-  <h2>Vile Villains!</h2>
-  <ul class="villains">
-    <li *ngFor="let villain of villains">
-      {{villain.name}}
-    </li>
-  </ul>
-  `
+  <div class="dashlist">
+    <h1>{{title}}</h1>
+    <h2>Vile Villains!</h2>
+    <ul class="villains">
+      <li *ngFor="let villain of villains" (click)="onSelect(villain)" [class.selected]="villain === selectedVillain">
+        <span class="badge">{{villain.id}}</span>{{villain.name}}
+      </li>
+    </ul>
+  </div>
+  <my-villain-detail [villain]="selectedVillain">
+  </my-villain-detail>
+  `,
+  directives: [VillainDetailComponent],
+  providers: [VillainService]
 })
 
-export class AppComponent {
-  public villains = VILLAINS;
+export class AppComponent implements OnInit {
+  constructor(private villainService: VillainService) { }
+
+  ngOnInit() {
+    this.getVillains();
+  }
+
+  public villains: Villain[];
   title = 'Tour of Villains';
-  villain: Villain = {
-    id: 1,
-    name: 'Snake'
-  };
+
+  selectedVillain: Villain;
+
+  onSelect(villain: Villain) {
+    this.selectedVillain = villain;
+  }
+
+  getVillains() {
+    this.villainService.getVillains()
+    .then(villains => this.villains = villains);
+  }
 }
 
-var VILLAINS: Villain[] = [
-  { "id": 11, "name": "Mr. Naughty" },
-  { "id": 12, "name": "Narcoleptic" },
-  { "id": 13, "name": "BomberMan" },
-  { "id": 14, "name": "Celery" },
-  { "id": 15, "name": "Magnetious" },
-  { "id": 16, "name": "RubberMean" },
-  { "id": 17, "name": "Dynamo" },
-  { "id": 18, "name": "Dr Evil" },
-  { "id": 19, "name": "Magma" },
-  { "id": 20, "name": "Tornado" }
-];
+
 
